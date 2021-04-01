@@ -1,0 +1,97 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
+
+
+using namespace std;
+
+//Listing functions
+void populateArray(int N);
+int searchValidEntries(int XL, int YL, int XH, int YH);
+
+//Declaring global variables
+int i,j;
+int A[101][101];
+
+int main (){
+    
+    srand(time(nullptr));
+    
+    int  A[101][101] = {{0}};//initialize the array to zeros
+   
+    populateArray(2000);// call the populateArray fuction 
+    
+    
+    //Call searchValidEntries() function 5 times with different parameters. 
+            
+    cout<<"The first rectangle's Values are: "<< endl;
+    
+    searchValidEntries(80, 1, 101, 11);
+    
+    
+    
+    cout<<"The Second rectangle's Values are: "<< endl;
+    searchValidEntries(10, 20, 40, 79);
+    
+    
+    cout<<"The Third rectangle's Values are: "<< endl;
+    searchValidEntries(1, 90, 100, 100);
+    
+    
+    cout<<"The fourth rectangle's Values are: " << endl;
+    searchValidEntries(40, 30, 70, 60);
+    
+    cout<<"The fifth rectangle's Values are: "<< endl;
+    searchValidEntries(50, 50, 70, 70);
+   
+   
+   
+}
+   
+ //Generating 2000 random indices and replace the element with 1 if it is zero.
+ //Otherwise, increment it.
+void populateArray(int N){
+    
+
+    for (int p = 1; p<=N; p++){
+
+        i = rand()%101; // Randomly generate i
+
+        j = rand()%101; // Randomly generate j
+
+        if(A[i][j] == 0){
+
+            A[i][j] = 1;
+
+        }else{
+            
+            A[i][j]++;
+            
+            
+        }
+    }
+
+}
+
+
+//Mark a rectangle area first, then print out 
+//the elements in that rectangle that is greater than 0.
+
+int searchValidEntries(int XL, int YL, int XH, int YH){
+    for (int i = XL; i<XH; i++){
+        for (int j = YL; j<YH; j++){
+            
+            if (A [i][j]>0){
+                
+                cout << "A[" << i<<"," << j << "]" <<": " << A [i][j]<< endl;
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    cout << endl;
+}
